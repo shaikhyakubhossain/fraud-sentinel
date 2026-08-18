@@ -1,12 +1,22 @@
-import pandas as pd
-
-from fraud_sentinel.config import DATASET_PATH
+from fraud_sentinel.analysis.analysis import (
+    analyze_fraud_distribution,
+    inspect_dataset,
+)
+from fraud_sentinel.data.loader import load_dataset
+from fraud_sentinel.visualization.plots import (
+    plot_amount_distribution,
+    plot_fraud_distribution,
+)
 
 
 def main():
-    df = pd.read_csv(DATASET_PATH)
-    
-    print(df.head())
+    df = load_dataset()
+
+    inspect_dataset(df)
+    analyze_fraud_distribution(df)
+
+    plot_fraud_distribution(df)
+    plot_amount_distribution(df)
 
 
 if __name__ == "__main__":
